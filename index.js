@@ -31,6 +31,9 @@ client.on('message', async message => {
 	const args = message.content.slice(1).split(/ +/);
     const commandName = args.shift().toLowerCase();
 
+    // Si no se tiene el role de ROYAL GUARD no se pueden ejecutar comandos en el bot.
+    if(!message.member.roles.find(r => r.name === "ROYAL GUARD")) return message.reply({file: './img/sinpermisos.gif'});
+
     if (!client.commands.has(commandName)) return;
     const command = client.commands.get(commandName);
 
