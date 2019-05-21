@@ -1,7 +1,7 @@
 module.exports = {
 	name: 'ban',
 	description: 'Banea a un usuario en concreto!',
-	execute(message, args) {
+	execute(message) {
 
 		const member = message.mentions.members.first();
 		if (!member) return message.reply('You need to mention the member you want to ban him');

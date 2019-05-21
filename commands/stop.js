@@ -1,6 +1,6 @@
 module.exports = {
 	name: 'stop',
-	description: 'Stop all songs in the queue!',
+	description: 'Para todas las canciones en la lista de reprodución!',
 	execute(message) {
 
 		const serverQueue = message.client.queue.get(message.guild.id);
