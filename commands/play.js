@@ -2,6 +2,7 @@ const ytdl = require('ytdl-core');
 
 module.exports = {
 	name: 'play',
+	usage: '!play <url>',
 	description: 'Reproduce una canción en el canal de voz!',
 	async execute(message, args) {
 

@@ -1,5 +1,6 @@
 module.exports = {
 	name: 'sonando',
+	usage: '!sonando',
 	description: 'Devuelve la info de la canción que está sonando!',
 	execute(message) {
 

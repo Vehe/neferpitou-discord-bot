@@ -1,5 +1,6 @@
 module.exports = {
 	name: 'skip',
+	usage: '!skip',
 	description: 'Salta a la canción siguiente!',
 	execute(message) {
 

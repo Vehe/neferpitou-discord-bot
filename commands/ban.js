@@ -1,5 +1,6 @@
 module.exports = {
 	name: 'ban',
+	usage: '!ban @example',
 	description: 'Banea a un usuario en concreto!',
 	execute(message) {
 
