@@ -3,7 +3,6 @@ const Discord = require('discord.js');
 
 const Client = require('./client/Client');
 const client = new Client();
-const queue = new Map();
 client.commands = new Discord.Collection();
 
 /**
