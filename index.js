@@ -1,16 +1,45 @@
+const fs = require('fs');
 const Discord = require('discord.js');
+
 const client = new Discord.Client();
+client.commands = new Discord.Collection();
 
-const { prefix, token } = require('./config.json');
+/**
+ * Busca en la carpeta commands todos los archivos JS y los almacena en una collection.
+ */
+const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
+for (const file of commandFiles) {
+	const command = require(`./commands/${file}`);
+	client.commands.set(command.name, command);
+}
 
+/**
+ * Se ejecuta cuando se conecta el bot al servidor.
+ */
 client.on('ready', () => {
   console.log(`Bot conectado como: ${client.user.tag}!`);
 });
 
-client.on('message', msg => {
-  if (msg.content === 'ping') {
-    msg.reply('Pong!');
-  }
+/**
+ * Se ejecuta cuando algún usuario envía un mensaje.
+ */
+client.on('message', async message => {
+
+    // Comprobamos que se llame al bot con el prefix correspondiente, así como dividir el comando de los argumentos.
+    if (!message.content.startsWith('!') || message.author.bot) return;
+	const args = message.content.slice(1).split(/ +/);
+    const command = args.shift().toLowerCase();
+
+    if (!client.commands.has(command)) return;
+
+    // Intentamos ejecutar el comando input del usuario, y le hacemos un catch al error.
+    try {
+        client.commands.get(command).execute(message, args);
+    } catch (error) {
+        console.error(error);
+        message.reply('Ops! Ha habido algún error al ejecutar el comando!');
+    }
+
 });
 
-client.login(token);
+client.login(process.env.BOT_TOKEN);
