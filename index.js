@@ -1,7 +1,9 @@
 const fs = require('fs');
 const Discord = require('discord.js');
 
-const client = new Discord.Client();
+const Client = require('./client/Client');
+const client = new Client();
+const queue = new Map();
 client.commands = new Discord.Collection();
 
 /**
@@ -28,13 +30,14 @@ client.on('message', async message => {
     // Comprobamos que se llame al bot con el prefix correspondiente, así como dividir el comando de los argumentos.
     if (!message.content.startsWith('!') || message.author.bot) return;
 	const args = message.content.slice(1).split(/ +/);
-    const command = args.shift().toLowerCase();
+    const commandName = args.shift().toLowerCase();
 
-    if (!client.commands.has(command)) return;
+    if (!client.commands.has(commandName)) return;
+    const command = client.commands.get(commandName);
 
     // Intentamos ejecutar el comando input del usuario, y le hacemos un catch al error.
     try {
-        client.commands.get(command).execute(message, args);
+        command.execute(message, args);
     } catch (error) {
         console.error(error);
         message.reply('Ops! Ha habido algún error al ejecutar el comando!');
