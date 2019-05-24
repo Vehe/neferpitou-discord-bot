@@ -28,7 +28,7 @@ client.on('message', async message => {
 
     // Comprobamos que se llame al bot con el prefix correspondiente, así como dividir el comando de los argumentos.
     if (!message.content.startsWith('!') || message.author.bot) return;
-	const args = message.content.slice(1).split(/ +/);
+    const args = message.content.slice(1).split(/ +/);
     const commandName = args.shift().toLowerCase();
 
     // Si no se tiene el role de ROYAL GUARD no se pueden ejecutar comandos en el bot.
