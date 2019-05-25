@@ -14,11 +14,12 @@ module.exports = {
 
 		voiceChannel.join().then(connection => {
 			connection.playStream(ytdl('https://www.youtube.com/watch?v=tJf9cSSRDrA', { filter: 'audioonly'}))
-                        	.on('end', () => voiceChannel.leave())
-                        	.on('error', (error) => {
-                                	voiceChannel.leave();
-                                	console.error(error);
-                        	});
+				.on('end', () => voiceChannel.leave())
+				.on('error', (error) => {
+						voiceChannel.leave();
+						console.error(error);
+				});
 		});
+
 	},
 };

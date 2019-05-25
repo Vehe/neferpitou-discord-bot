@@ -10,7 +10,7 @@ module.exports = {
 		return member
 			.ban()
 			.then(() => message.reply(`${member.user.tag} Ha sido baneado. :smiling_imp:`))
-            .catch(error => message.reply('Ops! Algo ha salido mal hoho.'));
-            
+			.catch(error => message.reply('Ops! Algo ha salido mal hoho.'));
+
 	},
 };

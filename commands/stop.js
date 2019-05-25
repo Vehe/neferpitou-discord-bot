@@ -8,7 +8,7 @@ module.exports = {
 		if (!message.member.voiceChannel) return message.reply('Debes estar en un canal de voz para poder parar la música!', {file: './img/hisoka.gif'});
 		if (!serverQueue) return message.reply('En este momento no hay nada que parar!');
 		serverQueue.songs = [];
-        serverQueue.connection.dispatcher.end();
-        
+		serverQueue.connection.dispatcher.end();
+
 	},
 };

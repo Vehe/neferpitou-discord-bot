@@ -7,7 +7,7 @@ module.exports = {
 		const serverQueue = message.client.queue.get(message.guild.id);
 		if (!message.member.voiceChannel) return message.reply('Debes estar en un canal de voz para poder saltar de canción!', {file: './img/hisoka.gif'});
 		if (!serverQueue) return message.reply('No hay ninguna canción que pueda saltar!');
-        serverQueue.connection.dispatcher.end();
-        
+		serverQueue.connection.dispatcher.end();
+
 	},
 };

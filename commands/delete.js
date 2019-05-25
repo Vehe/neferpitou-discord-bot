@@ -6,6 +6,6 @@ module.exports = {
 
 		if( args.length <= 0 ) return message.reply('Debes especificar el número de mensajes del canal a borrar! :confounded:');
 		message.channel.bulkDelete(parseInt(args[0]) + 1).catch(console.error);
-        
+
 	},
 };
