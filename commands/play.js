@@ -82,6 +82,6 @@ module.exports = {
 				console.error(error);
 			});
 
-		dispatcher.setVolumeLogarithmic(serverQueue.volume / 5);
+		dispatcher.setVolumeLogarithmic(serverQueue.volume / 3);
 	}
 };

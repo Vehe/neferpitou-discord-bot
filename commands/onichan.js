@@ -11,6 +11,7 @@ module.exports = {
 		if(serverQueue) serverQueue.voiceChannel.leave();
 
 		let voiceChannel = message.member.voiceChannel;
+		message.delete();
 
 		voiceChannel.join().then(connection => {
 			connection.playStream(ytdl('https://www.youtube.com/watch?v=tJf9cSSRDrA', { filter: 'audioonly'}))
