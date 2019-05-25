@@ -1,4 +1,5 @@
 const fs = require('fs');
+const mysql = require('mysql');
 const Discord = require('discord.js');
 
 const Client = require('./client/Client');
@@ -17,8 +18,19 @@ for (const file of commandFiles) {
 /**
  * Se ejecuta cuando se conecta el bot al servidor.
  */
-client.on('ready', () => {
+client.once('ready', () => {
+
 	console.log(`Bot conectado como: ${client.user.tag}!`);
+
+	const connection = mysql.createConnection({host:'localhost', user:'admin', password:'password', database:'bot'});
+	connection.connect(err => { if(err) return console.log(err); });
+
+	client.users.map( user => {
+		connection.query(`INSERT INTO bot (user, points) VALUES ("${user.id}", 100)`);
+	});
+
+	connection.end();
+
 });
 
 /**
